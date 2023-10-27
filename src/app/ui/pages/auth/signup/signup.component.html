@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Sign up</mat-card-title>
+    <!--<mat-card-subtitle>Start</mat-card-subtitle>-->
+  </mat-card-header>
+  <mat-card-content>
+    <form class="auth-form mt-3" [formGroup]="signupForm" (ngSubmit)="signin()">
+      <mat-form-field class="w-100 auth-control" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput placeholder="your_email@gmail.com" />
+
+        <mat-error *ngIf="signupForm.controls.email.hasError('required')"> Email is <b>required</b> </mat-error>
+        <mat-error *ngIf="signupForm.controls.email.hasError('email')"> Email format is <b>required</b> </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-100 auth-control mt-3" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" name="username" type="text" matInput placeholder="Ex. pat@example.com" />
+        <mat-error *ngIf="signupForm.controls.username.hasError('required')"> Username is <b>required</b> </mat-error>
+      </mat-form-field>
+      <ng-container>
+        <mat-form-field class="w-100 auth-control mt-3" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" [type]="hide() ? 'text' : 'password'" matInput [minlength]="8" placeholder="" />
+          <button type="button" mat-icon-button matSuffix (click)="toggleShowPassword()">
+            <mat-icon role="button">{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.controls.password.hasError('required')"> Password is <b>required</b> </mat-error>
+          <mat-error *ngIf="signupForm.controls.password.hasError('minlength')"> Password must be more than <b>8</b> characters </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100 auth-control mt-3" appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input formControlName="confirmPassword" [type]="hide() ? 'text' : 'password'" matInput placeholder="" />
+          <button type="button" mat-icon-button matSuffix (click)="toggleShowPassword()">
+            <mat-icon role="button">{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('required')"> Password is <b>required</b> </mat-error>
+
+          <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('confirmPasswordValidator')">
+            The entered passwords do not match. Please try again.
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+      <button type="submit" class="w-100" mat-button>Sign up</button>
+      <div class="text-end mt-3">Have an account, <a routerLink="/b/login" class="nav-link">login</a> here!</div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,13 @@
+<h1>{{ 'APP_TITLE' | translate }}</h1>
+<button (click)="export('success')">success</button>
+<button (click)="export('warning')">warning</button>
+<button (click)="export('error')">error</button>
+<button (click)="export('info')">info</button>
+<button (click)="export('normal')">normal</button>
+
+<echart
+  [chartConfig]="chartConfig()"
+  hostElementHeight="500px"
+  renderMode="svg"
+/>
+<mat-radio-button />

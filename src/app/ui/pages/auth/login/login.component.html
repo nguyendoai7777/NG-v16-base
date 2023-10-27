@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ 'LOG_IN' | translate }}</mat-card-title>
+    <!--<mat-card-subtitle>Start</mat-card-subtitle>-->
+  </mat-card-header>
+  <mat-card-content>
+    <form class="auth-form mt-3" [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field class="w-100 auth-control" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          formControlName="username"
+          name="username"
+          type="text"
+          matInput
+          placeholder="Ex. pat@example.com"
+        />
+        <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+          Username is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-100 auth-control mt-3" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          [type]="hide() ? 'text' : 'password'"
+          matInput
+          placeholder=""
+        />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="toggleShowPassword()"
+        >
+          <mat-icon role="button">{{
+            hide() ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button type="button" class="w-100" (click)="fillDefault()" mat-button>
+        Auto fill
+      </button>
+      <button type="submit" class="w-100" mat-button>Login</button>
+      <div class="text-end mt-3">
+        Have no account,
+        <a routerLink="/b/signup" class="nav-link">sign up</a> here!
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<br />

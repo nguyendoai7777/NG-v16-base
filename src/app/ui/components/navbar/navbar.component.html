@@ -1,0 +1,46 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <a routerLink="/m/dashboard">
+    <button
+      mat-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      dashboard
+    </button>
+  </a>
+  <a routerLink="/b/signup">
+    <button
+      mat-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      signup
+    </button>
+  </a>
+  <a routerLink="/b/login">
+    <button
+      mat-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      login
+    </button>
+  </a>
+  <button
+    mat-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+    (click)="logout()"
+  >
+    logout
+  </button>
+</mat-toolbar>
