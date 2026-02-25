@@ -46,3 +46,31 @@ export function AppInterceptor(): HttpInterceptorFn {
     }
   };
 }
+/*
+private handlePreemptiveRefresh(request: HttpRequest<any>, next: HttpHandler) {
+  if (!this.isRefreshing) {
+    this.isRefreshing = true;
+    this.refreshTokenSubject.next(null);
+
+    return this.authService.refreshToken().pipe(
+      switchMap((newToken) => {
+        this.isRefreshing = false;
+        this.refreshTokenSubject.next(newToken.accessToken);
+        return next.handle(this.addToken(request, newToken.accessToken));
+      }),
+      catchError((err) => {
+        this.isRefreshing = false;
+        this.authService.logout();
+        return throwError(() => err);
+      })
+    );
+  } else {
+    // CỬA CHẶN: Các request sau sẽ "xếp hàng" ở đây, không chạy tiếp xuống Backend
+    return this.refreshTokenSubject.pipe(
+      filter(t => t !== null),
+      take(1),
+      switchMap(newToken => next.handle(this.addToken(request, newToken)))
+    );
+  }
+}
+*/
